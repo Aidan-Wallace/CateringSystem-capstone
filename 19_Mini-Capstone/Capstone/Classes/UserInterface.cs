@@ -15,15 +15,13 @@ namespace Capstone.Classes
         // NO instances of Console.ReadLine or Console.WriteLIne should be
         // in any other class.
 
-        private Catering catering = new Catering();
-
+        public Catering catering { get; private set; } = new Catering();
+        
         public void RunInterface()
         {
             bool done = false;
             while (!done)
             {
-                Order currentCustomer = new Order();
-
                 Console.WriteLine("(1) Display Catering Items");
                 Console.WriteLine("(2) Order");
                 Console.WriteLine("(3) Quit");
@@ -31,7 +29,7 @@ namespace Capstone.Classes
                 switch (input)
                 {
                     case "1": DisplayCateringItems(); break;
-                    case "2": Order(currentCustomer); break;
+                    case "2": Order(); break;
                     case "3": done = true; break;
                     default: Console.WriteLine("\nPlease enter a valid selection."); break;
                 }
@@ -52,7 +50,7 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public void Order(Order currentCustomer)
+        public void Order()
         {
             bool isOrdering = true;
             while (isOrdering)
@@ -71,9 +69,7 @@ namespace Capstone.Classes
                     case "2":
                         DisplayCateringItems();
                         Console.Write("Please select product >>> ");
-
-                        currentCustomer.AddProductToOrder(Console.ReadLine());
-
+                        catering.order.AddProductToOrder(Console.ReadLine());
                         break;
                     case "3":
                         isOrdering = false;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+//using Capstone.Classes.Catering;
 namespace Capstone.Classes
 {
     public class Order
@@ -14,7 +14,11 @@ namespace Capstone.Classes
 
         public bool AddProductToOrder(string productCode)
         {
-
+            // match the string to the items List to get the CateringItem
+            //Add that item to ItemsToOrder with an int ++, then Decrement the same item in Inventory by 1,
+            //Check to see if there's enough product.
+            catering.GetItem(productCode);
+            
             return true; // :)
         }
 
