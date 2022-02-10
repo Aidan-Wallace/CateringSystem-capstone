@@ -19,9 +19,9 @@ namespace Capstone.Classes
 
         // This class should contain any and all details of access to files
 
-        public FileAccess()
-        {
-        }
+        //public FileAccess()
+        //{
+        //}
         public List<CateringItem> OpenItems()
         {
             // New list to hold new items
