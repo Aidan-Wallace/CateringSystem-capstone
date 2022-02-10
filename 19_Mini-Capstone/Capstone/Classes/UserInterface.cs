@@ -67,9 +67,9 @@ namespace Capstone.Classes
                         // Add money
                         break;
                     case "2":
-                        DisplayCateringItems();
-                        Console.Write("Please select product >>> ");
-                        catering.order.AddProductToOrder(Console.ReadLine());
+                        SelectProduct();
+                        
+                       // if (catering.order.AddProductToOrder(catering.GetItem(Console.ReadLine()))) //returns true if the item was added to the order, need to remove it from inventory                        
                         break;
                     case "3":
                         isOrdering = false;
@@ -81,5 +81,28 @@ namespace Capstone.Classes
             }
 
         }
+        public void SelectProduct()
+        {
+            bool pickingQuantity = true;
+            DisplayCateringItems();
+            Console.WriteLine("Please select product:");
+            CateringItem product = catering.GetItem(Console.ReadLine());
+            if (product == null) { Console.WriteLine("Product not found.\nPlease try again.\n"); pickingQuantity = false; } //need to check for sufficient stock, AND sufficient funds.
+            if (catering.Inventory[product] == 0) { Console.WriteLine("Item is Sold out."); pickingQuantity = false; }
+            while (pickingQuantity)
+            {
+                Console.WriteLine("Please enter a quantity:");
+                try { int quantity = int.Parse(Console.ReadLine());
+                    if (quantity > catering.Inventory[product])
+                    {
+                        Console.WriteLine("Insufficient Stock for the quantity requested. Please enter a smaller value"); continue;
+                    }
+                    catering.order.AddProductToOrder(product, quantity);
+                        pickingQuantity = false; } //AddProductToOrder needs to be an int return so can account for money issues, right now it's bool
+                catch { Console.WriteLine("Invalid quantity. Please try again."); }
+                
+            }
+        }
+
     }
 }
