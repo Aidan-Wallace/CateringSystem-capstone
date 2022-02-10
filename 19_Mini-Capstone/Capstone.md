@@ -20,7 +20,8 @@ You’ve been asked to develop an application for a Catering Vendor, Weyland Cor
         
 3. Catering inventory is stocked via an input file. (You will be given a file to test with, but DO NOT hardcode values specific to the file). 
 4. The catering system is automatically restocked each time the application runs. (ONLY when the program starts up) The only way to restock the machine is to re-run the application.
-5. When the customer selects ​(1) you need to Display Catering Items and its quantity remaining. Then reshow the main menu so the user can make a new choice. (The following is a SAMPLE. Your items will come from your inventory file)
+5. When the customer selects ​(1) you ne
+ed to Display Catering Items and its quantity remaining. Then reshow the main menu so the user can make a new choice. (The following is a SAMPLE. Your items will come from your inventory file)
 
 
         Product Code     Description        Qty      Price
