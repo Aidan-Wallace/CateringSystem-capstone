@@ -29,7 +29,7 @@ namespace Capstone.Classes
                 return Catering.GetOrder();
             }
         }
-        public void RunInterface() // I don't think we need a test for this one. Idk how we would anyway.
+        public void RunInterface()
         {
             bool done = false;
             while (!done)
@@ -48,7 +48,7 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void DisplayCateringItems() // Unit Test needed (unsure?)
+        public void DisplayCateringItems()
         {
             Console.WriteLine();
             Console.WriteLine(String.Format("{0,-13} {1,-20} {2, -10} {3,-7}", "Product Code", "Description", "Qty", "Price"));
@@ -62,7 +62,7 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public void Order() // Unit Test needed, i think??
+        public void Order() 
         {
 
             bool isOrdering = true;
@@ -120,7 +120,7 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void SelectProduct() // Unit Test needed
+        public void SelectProduct()
         {
             bool pickingQuantity = true;
             DisplayCateringItems();
@@ -160,7 +160,7 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void DisplayReceipt() // Unit Test needed
+        public void DisplayReceipt()
         {
             Dictionary<string, string[]> productType = new Dictionary<string, string[]>() 
             { 
