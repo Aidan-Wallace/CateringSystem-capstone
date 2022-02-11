@@ -7,9 +7,9 @@ namespace Capstone.Classes
     {
         // This class should contain all the "work" for catering
 
-        public Order order { get; set; } = new Order();
+        private Order CurrentOrder { get; set; } = new Order();
         private List<CateringItem> items = new List<CateringItem>();
-        public Dictionary<CateringItem, int> Inventory = new Dictionary<CateringItem, int>(); // private | camel case
+        private Dictionary<CateringItem, int> inventory = new Dictionary<CateringItem, int>(); // private | camel case
         
         public Catering ()
         {
@@ -17,7 +17,7 @@ namespace Capstone.Classes
             items = fileOpener.OpenItems();
             foreach (CateringItem item in items)
             {
-                Inventory.Add(item, 25);
+                inventory.Add(item, 25);
             }
         }
         public CateringItem GetItem(string productCode)
@@ -32,6 +32,18 @@ namespace Capstone.Classes
                 
             } return foundItem;
         }
-        //public TakeItem 
+        public Dictionary<CateringItem, int> GetInventory()
+        {
+            return inventory;
+        }
+        public Order GetOrder()
+        {
+            return CurrentOrder;
+        }
+        public void TakeItem(CateringItem product, int quantity)
+        {
+            inventory[product] -= quantity;
+        }
+
     }
 }
