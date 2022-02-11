@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Capstone.Classes
 {
@@ -8,9 +7,9 @@ namespace Capstone.Classes
     {
         // This class should contain all the "work" for catering
 
-        public Order order { get; set; } = new Order(); 
+        public Order order { get; set; } = new Order();
         private List<CateringItem> items = new List<CateringItem>();
-        public Dictionary<CateringItem, int> Inventory = new Dictionary<CateringItem, int>();
+        public Dictionary<CateringItem, int> Inventory = new Dictionary<CateringItem, int>(); // private | camel case
         
         public Catering ()
         {
@@ -19,7 +18,6 @@ namespace Capstone.Classes
             foreach (CateringItem item in items)
             {
                 Inventory.Add(item, 25);
-               
             }
         }
         public CateringItem GetItem(string productCode)

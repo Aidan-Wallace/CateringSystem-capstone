@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace Capstone.Classes
@@ -14,6 +13,7 @@ namespace Capstone.Classes
         // be in this class.
         // NO instances of Console.ReadLine or Console.WriteLIne should be
         // in any other class.
+
         readonly int[] acceptableBills = new int[6] { 1, 5, 10, 20, 50, 100 };
 
         public Catering catering { get; private set; } = new Catering();
@@ -35,7 +35,6 @@ namespace Capstone.Classes
                     default: Console.WriteLine("\nPlease enter a valid selection."); break;
                 }
             }
-
         }
         public void DisplayCateringItems()
         {
@@ -53,11 +52,11 @@ namespace Capstone.Classes
 
         public void Order()
         {
-            decimal addedMoney = 0.00M;
+            decimal addedMoney = 0.00M; // *
             bool isOrdering = true;
             while (isOrdering)
             {
-                Console.WriteLine("(1) Add Money");
+                Console.WriteLine("\n(1) Add Money");
                 Console.WriteLine("(2) Select Products");
                 Console.WriteLine("(3) Complete Transaction");
 
@@ -69,7 +68,7 @@ namespace Capstone.Classes
                         int inputBills = 0;
 
                         while (true)
-                        //while (addedMoney <= 100.00M)
+                        // while (addedMoney <= 100.00M)
                         {
                             try
                             {
@@ -86,6 +85,7 @@ namespace Capstone.Classes
                                 continue;
                             }
 
+                            // Move to catering without the CW's
                             if (!acceptableBills.Contains(inputBills))
                             {
                                 Console.WriteLine("Please enter a valid bill");
@@ -116,7 +116,7 @@ namespace Capstone.Classes
                     case "2":
                         SelectProduct();
                         // if (catering.order.AddProductToOrder(catering.GetItem(Console.ReadLine()))) //returns true if the item was added to the order, need to remove it from inventory
-                        addedMoney = 0.00M; 
+                        addedMoney = 0.00M;
                         break;
                     case "3":
                         isOrdering = false;
@@ -127,7 +127,6 @@ namespace Capstone.Classes
                         break;
                 }
             }
-
         }
         public void SelectProduct()
         {
