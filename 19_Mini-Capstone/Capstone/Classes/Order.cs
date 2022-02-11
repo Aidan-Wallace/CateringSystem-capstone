@@ -84,7 +84,7 @@ namespace Capstone.Classes
             changeMessage += "in change.";
             
             int commaOccurrence = (changeMessage.IndexOf("in change.") - 2);
-           
+            ItemsToOrder.Clear();
             return changeMessage.Remove(commaOccurrence, 1);
         }
     }
