@@ -14,11 +14,9 @@ namespace Capstone.Classes
             ItemsToOrder = new Dictionary<CateringItem, int>();
         }
 
-        public bool AddProductToOrder(CateringItem item, int quantity)
+        public bool AddProductToOrder(CateringItem item, int quantity) // Unit Test needed
         {
-            // match the string to the items List to get the CateringItem
-            //Add that item to ItemsToOrder with an int ++, then Decrement the same item in Inventory by 1,
-            //Check to see if there's enough product, and that there's enough money.
+
             decimal currentPrice = item.Price * quantity;
             if (currentPrice > AccountBalance) { return false; }
             if (ItemsToOrder.ContainsKey(item))
@@ -34,11 +32,9 @@ namespace Capstone.Classes
             return true;
         }
 
-        public bool AddMoney(int amount)
+        public bool AddMoney(int amount) // Unit Test needed
         {
-            // Balance cannot go above $1,500
-            // Cannot add more than $100 at once
-            // Only accept 1, 5, 10, 20, 50, 100
+
             decimal newBalance = AccountBalance + amount;
 
             if (newBalance > 1500) return false;
@@ -48,11 +44,11 @@ namespace Capstone.Classes
             return true;
         }
 
-        public void CompleteTransaction()
+        public void CompleteTransaction() // Unit Test needed
         {
             AccountBalance = 0;
         }
-       public string ChangeDue()
+       public string ChangeDue() // Unit Test needed
         { 
             int numberOfFifties = 0;
             int numberOfTwenties = 0;
@@ -85,7 +81,7 @@ namespace Capstone.Classes
             
             int commaOccurrence = (changeMessage.IndexOf("in change.") - 2);
             ItemsToOrder.Clear();
-            return changeMessage.Remove(commaOccurrence, 1);
+            return changeMessage.Remove(commaOccurrence, 1); // need to add something to make changeMessage say "You don't need any change." in the event someone completes an order and AccountBalance == OrderTotal OR someone tries to Complete Transaction with no products added.
         }
     }
 }

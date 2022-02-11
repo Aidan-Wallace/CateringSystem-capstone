@@ -5,11 +5,6 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    // Open file
-    // split file
-    // Append to property in this class
-    // repeat
-
 
     public class FileAccess
     {
@@ -19,9 +14,7 @@ namespace Capstone.Classes
 
         // This class should contain any and all details of access to files
 
-        //public FileAccess()
-        //{
-        //}
+      
         public List<CateringItem> OpenItems()
         {
             // New list to hold new items

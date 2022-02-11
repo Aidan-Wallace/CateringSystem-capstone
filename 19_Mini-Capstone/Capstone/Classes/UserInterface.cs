@@ -29,7 +29,7 @@ namespace Capstone.Classes
                 return Catering.GetOrder();
             }
         }
-        public void RunInterface()
+        public void RunInterface() // I don't think we need a test for this one. Idk how we would anyway.
         {
             bool done = false;
             while (!done)
@@ -38,6 +38,7 @@ namespace Capstone.Classes
                 Console.WriteLine("(2) Order");
                 Console.Write("(3) Quit\n ");
                 string input = Console.ReadLine();
+                Console.WriteLine();
                 switch (input)
                 {
                     case "1": DisplayCateringItems(); break;
@@ -47,7 +48,7 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void DisplayCateringItems()
+        public void DisplayCateringItems() // Unit Test needed (unsure?)
         {
             Console.WriteLine();
             Console.WriteLine(String.Format("{0,-13} {1,-20} {2, -10} {3,-7}", "Product Code", "Description", "Qty", "Price"));
@@ -61,7 +62,7 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public void Order()
+        public void Order() // Unit Test needed, i think??
         {
 
             bool isOrdering = true;
@@ -73,6 +74,7 @@ namespace Capstone.Classes
 
                 Console.Write("Current Account Balance: {0}\n ", CurrentOrder.AccountBalance.ToString("C2"));
                 string input = Console.ReadLine();
+                Console.WriteLine();
                 switch (input)
                 {
                     case "1":
@@ -87,9 +89,6 @@ namespace Capstone.Classes
                             }
                             catch
                             {
-                                /* 
-                                 * User doesn't enter a integer
-                                */
                                 Console.WriteLine("Bill values must be entered as a number.\n");
                                 continue;
                             }
@@ -121,14 +120,13 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void SelectProduct()
+        public void SelectProduct() // Unit Test needed
         {
             bool pickingQuantity = true;
             DisplayCateringItems();
             Console.Write("Please select product.\n ");
             CateringItem product = Catering.GetItem(Console.ReadLine().ToUpper());
 
-            //need to check for sufficient stock, AND sufficient funds.
             if (product == null)
             {
                 Console.WriteLine("Product not found.\nPlease try again.\n");
@@ -162,7 +160,7 @@ namespace Capstone.Classes
                 }
             }
         }
-        public void DisplayReceipt()
+        public void DisplayReceipt() // Unit Test needed
         {
             Dictionary<string, string[]> productType = new Dictionary<string, string[]>() 
             { 
@@ -179,8 +177,8 @@ namespace Capstone.Classes
             }
             Console.WriteLine($"\nTotal: {CurrentOrder.OrderTotal:C2}\n");
             Console.WriteLine(CurrentOrder.ChangeDue());
+            Console.WriteLine();
             
         }
-
     }
-}
+}//The log file will need to be written to every time something happens in the UI aside from just changing menus. Maybe we can have a method in FileAccess that does that? If there's a way to make it happen for all possible actions that would probably be best. Could also be an oppportunity for polymorphism if we have to do transformations to make it work based on what the action is. 
