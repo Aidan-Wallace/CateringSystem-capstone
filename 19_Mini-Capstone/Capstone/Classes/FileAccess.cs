@@ -36,5 +36,19 @@ namespace Capstone.Classes
             }
             return populateInventory;
         }
+        // 1 is add money, 2 is pick product, 3 is complete transaction
+        public void Log(string actionTaken, decimal amount, decimal balance)
+        {   string dateAndTime = DateTime.Now.ToString();
+            string fileName = "log.txt";
+            //string filePath = @"C:\Catering";
+            string logPath = Path.Combine(filePath, fileName);
+            string line;
+            line = $"{dateAndTime} {actionTaken} {amount.ToString("C2")} {balance.ToString("C2")}";
+
+            using (StreamWriter sw = new StreamWriter(logPath, true))
+            {
+                sw.WriteLine(line);
+            }
+        }
     }
 }

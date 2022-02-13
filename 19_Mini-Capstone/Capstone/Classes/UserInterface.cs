@@ -50,7 +50,7 @@ namespace Capstone.Classes
         }
         public void DisplayCateringItems()
         {
-            Console.WriteLine();
+           // Console.WriteLine();
             Console.WriteLine(String.Format("{0,-13} {1,-20} {2, -10} {3,-7}", "Product Code", "Description", "Qty", "Price"));
 
             foreach (KeyValuePair<CateringItem, int> kvp in Inventory.OrderBy(key => key.Key.ProductCode))
@@ -86,6 +86,7 @@ namespace Capstone.Classes
                             {
                                 Console.Write("Please enter amount\n $");
                                 inputBills = int.Parse(Console.ReadLine());
+                                Console.WriteLine();
                             }
                             catch
                             {
@@ -107,9 +108,11 @@ namespace Capstone.Classes
                         break;
                     case "2":
                         if (CurrentOrder.AccountBalance == 0) { Console.WriteLine("Please add funds first."); continue; }
+                        Console.WriteLine();
                         SelectProduct();
                         break;
                     case "3":
+                        Console.WriteLine();
                         DisplayReceipt();
                         CurrentOrder.CompleteTransaction();
                         isOrdering = false;

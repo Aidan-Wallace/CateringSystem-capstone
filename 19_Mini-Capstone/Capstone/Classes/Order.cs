@@ -8,17 +8,18 @@ namespace Capstone.Classes
         public Dictionary<CateringItem, int> ItemsToOrder { get; }
         public decimal AccountBalance { get; private set; } = 0.00M;
         public decimal OrderTotal { get; private set; } = 0.00M;
-
+        public FileAccess log = new FileAccess();
         public Order()
         {
             ItemsToOrder = new Dictionary<CateringItem, int>();
+           
         }
 
         public bool AddProductToOrder(CateringItem item, int quantity) // Unit Test needed
         {
             decimal currentPrice = item.Price * quantity;
             if (currentPrice > AccountBalance) { return false; }
-
+          
             if (ItemsToOrder.ContainsKey(item))
             {
                 ItemsToOrder[item] += quantity;
@@ -29,7 +30,9 @@ namespace Capstone.Classes
             }
             AccountBalance -= currentPrice;
             OrderTotal =+ currentPrice;
+            log.Log($"{quantity} {item.Description} {item.ProductCode}", currentPrice, AccountBalance);
             return true;
+            //NUMBER_ORDERED PRODUCT_NAME PRODUCT_CODE
         }
 
         public bool AddMoney(int amount) // Unit Test needed
@@ -41,6 +44,8 @@ namespace Capstone.Classes
 
             AccountBalance += amount;
 
+            log.Log($"ADD MONEY:", amount, AccountBalance);
+                      
             return true;
         }
 
@@ -58,6 +63,8 @@ namespace Capstone.Classes
             int numberOfQuarters = 0;
             int numberOfDimes = 0;
             int numberOfNickels = 0;
+            
+            log.Log($"GIVE CHANGE:", AccountBalance, 0);
 
             if (AccountBalance == 0) return "You received no change.";
 
@@ -87,6 +94,7 @@ namespace Capstone.Classes
                                                              // "You don't need any change." in the event someone
                                                              // completes an order and AccountBalance == OrderTotal OR
                                                              // someone tries to Complete Transaction with no products added.
+
         }
     }
 }
