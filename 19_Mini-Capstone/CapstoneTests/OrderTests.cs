@@ -11,6 +11,14 @@ namespace CapstoneTests
     {
         private Order testObject = new Order();
 
+
+        [TestMethod]
+        public void AddMoneyTest()
+        {
+            testObject.AddMoney(100);
+
+            Assert.AreEqual(testObject.AccountBalance, 100);
+        }
         [TestMethod]
         public void ChangeDueTest()
         {
@@ -23,7 +31,7 @@ namespace CapstoneTests
             Assert.IsTrue(result);
 
             // Check to see if string matches template string
-            string templateString = "You received (1) Fifties, (1) Twenties, (1) Tens, (2) Ones, (2) Nickels in change.";
+            string templateString = "You received (1) Fifties, (1) Twenties, (1) Tens, (2) Ones, (2) Quarters in change.";
             string changeReturned = testObject.ChangeDue();
             Assert.AreEqual(templateString, changeReturned);
 
@@ -56,6 +64,16 @@ namespace CapstoneTests
 
             // 4. make sure the order total is correct
             Assert.AreEqual(17.50M, testObject.OrderTotal);
+        }
+
+        [TestMethod]
+        public void CompleteTransactionTest()
+        {
+            testObject.AddMoney(100);
+
+            testObject.CompleteTransaction();
+
+            Assert.AreEqual(testObject.AccountBalance, 0);
         }
 
         [TestMethod]

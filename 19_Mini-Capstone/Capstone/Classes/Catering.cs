@@ -6,12 +6,11 @@ namespace Capstone.Classes
     public class Catering
     {
         // This class should contain all the "work" for catering
-
         private Order CurrentOrder { get; set; } = new Order();
         private List<CateringItem> items = new List<CateringItem>();
         private Dictionary<CateringItem, int> inventory = new Dictionary<CateringItem, int>();
-        
-        public Catering ()
+
+        public Catering()
         {
             FileAccess fileOpener = new FileAccess();
             items = fileOpener.OpenItems();
@@ -29,8 +28,8 @@ namespace Capstone.Classes
                 {
                     foundItem = item;
                 }
-                
-            } return foundItem;
+            }
+            return foundItem;
         }
         public Dictionary<CateringItem, int> GetInventory() // Unit Test needed
         {
@@ -44,6 +43,5 @@ namespace Capstone.Classes
         {
             inventory[product] -= quantity;
         }
-
     }
 }

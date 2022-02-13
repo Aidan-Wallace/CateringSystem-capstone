@@ -59,14 +59,14 @@ namespace Capstone.Classes
             int numberOfDimes = 0;
             int numberOfNickels = 0;
 
-            while(OrderTotal >= 50) { OrderTotal -= 50; numberOfFifties++;}
-            while(OrderTotal >= 20) { OrderTotal -= 20; numberOfTwenties++; }
-            while (OrderTotal >= 10) { OrderTotal -= 10; numberOfTens++; }
-            while (OrderTotal >= 5) { OrderTotal -= 5; numberOfFives++; }
-            while (OrderTotal >= 1) { OrderTotal -= 1; numberOfOnes++; }
-            while (OrderTotal >= 0.25M) { OrderTotal -= 0.25M; numberOfQuarters++; }
-            while (OrderTotal >= 0.10M) { OrderTotal -= 0.10M; numberOfDimes++; }
-            while (OrderTotal >= 0.05M) { OrderTotal -= 0.05M; numberOfNickels++; }
+            while(AccountBalance >= 50) { AccountBalance -= 50; numberOfFifties++;}
+            while(AccountBalance >= 20) { AccountBalance -= 20; numberOfTwenties++; }
+            while (AccountBalance >= 10) { AccountBalance -= 10; numberOfTens++; }
+            while (AccountBalance >= 5) { AccountBalance -= 5; numberOfFives++; }
+            while (AccountBalance >= 1) { AccountBalance -= 1; numberOfOnes++; }
+            while (AccountBalance >= 0.25M) { AccountBalance -= 0.25M; numberOfQuarters++; }
+            while (AccountBalance >= 0.10M) { AccountBalance -= 0.10M; numberOfDimes++; }
+            while (AccountBalance >= 0.05M) { AccountBalance -= 0.05M; numberOfNickels++; }
 
             string changeMessage = "You received ";
             changeMessage += numberOfFifties != 0 ? $"({numberOfFifties}) Fifties, " : "";
