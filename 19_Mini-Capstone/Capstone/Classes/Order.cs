@@ -16,9 +16,9 @@ namespace Capstone.Classes
 
         public bool AddProductToOrder(CateringItem item, int quantity) // Unit Test needed
         {
-
             decimal currentPrice = item.Price * quantity;
             if (currentPrice > AccountBalance) { return false; }
+
             if (ItemsToOrder.ContainsKey(item))
             {
                 ItemsToOrder[item] += quantity;

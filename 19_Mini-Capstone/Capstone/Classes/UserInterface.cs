@@ -62,7 +62,7 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public void Order() 
+        public void Order()
         {
 
             bool isOrdering = true;
@@ -162,9 +162,9 @@ namespace Capstone.Classes
         }
         public void DisplayReceipt()
         {
-            Dictionary<string, string[]> productType = new Dictionary<string, string[]>() 
-            { 
-                { "B", new string[2]{"Beverage", "Don't forget ice."}}, 
+            Dictionary<string, string[]> productType = new Dictionary<string, string[]>()
+            {
+                { "B", new string[2]{"Beverage", "Don't forget ice."}},
                 { "A", new string[2]{"Appetizer", "You might need extra plates." }},
                 { "E", new string[2]{"Entree", "Did you remember Dessert?" } },
                 { "D", new string[2]{"Dessert", "Coffee goes with dessert."} }
@@ -172,13 +172,22 @@ namespace Capstone.Classes
 
             Console.WriteLine();
             foreach (KeyValuePair<CateringItem, int> kvp in CurrentOrder.ItemsToOrder.OrderBy(key => key.Key.Type))
-            {                
-                Console.WriteLine(String.Format("{0,-5} {1,-10} {2, -20} {3, -7} {4, -25}", kvp.Value, productType[kvp.Key.Type][0], kvp.Key.Description, kvp.Key.Price.ToString("C2"), productType[kvp.Key.Type][1]));
+            {
+                Console.WriteLine(String.Format("{0,-5} {1,-10} {2, -20} {3, -7} {4, -25}",
+                    kvp.Value,
+                    productType[kvp.Key.Type][0],
+                    kvp.Key.Description,
+                    kvp.Key.Price.ToString("C2"),
+                    productType[kvp.Key.Type][1])
+                );
             }
             Console.WriteLine($"\nTotal: {CurrentOrder.OrderTotal:C2}\n");
             Console.WriteLine(CurrentOrder.ChangeDue());
             Console.WriteLine();
-            
+
         }
     }
-}//The log file will need to be written to every time something happens in the UI aside from just changing menus. Maybe we can have a method in FileAccess that does that? If there's a way to make it happen for all possible actions that would probably be best. Could also be an oppportunity for polymorphism if we have to do transformations to make it work based on what the action is. 
+}// The log file will need to be written to every time something happens in the UI aside from just changing menus.
+ // Maybe we can have a method in FileAccess that does that? If there's a way to make it happen for all possible
+ // actions that would probably be best. Could also be an opportunity for polymorphism if we have to do transformations
+ // to make it work based on what the action is. 

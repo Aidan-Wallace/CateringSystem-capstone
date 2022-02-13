@@ -11,10 +11,8 @@ namespace Capstone.Classes
         // all files for this application should in this directory
         // you will likely need to create it on your computer
         private string filePath = @"C:\Catering";
-
         // This class should contain any and all details of access to files
 
-      
         public List<CateringItem> OpenItems()
         {
             // New list to hold new items
