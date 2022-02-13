@@ -59,6 +59,8 @@ namespace Capstone.Classes
             int numberOfDimes = 0;
             int numberOfNickels = 0;
 
+            if (AccountBalance == 0) return "You received no change.";
+
             while(AccountBalance >= 50) { AccountBalance -= 50; numberOfFifties++;}
             while(AccountBalance >= 20) { AccountBalance -= 20; numberOfTwenties++; }
             while (AccountBalance >= 10) { AccountBalance -= 10; numberOfTens++; }
@@ -81,7 +83,10 @@ namespace Capstone.Classes
             
             int commaOccurrence = (changeMessage.IndexOf("in change.") - 2);
             ItemsToOrder.Clear();
-            return changeMessage.Remove(commaOccurrence, 1); // need to add something to make changeMessage say "You don't need any change." in the event someone completes an order and AccountBalance == OrderTotal OR someone tries to Complete Transaction with no products added.
+            return changeMessage.Remove(commaOccurrence, 1); // need to add something to make changeMessage say
+                                                             // "You don't need any change." in the event someone
+                                                             // completes an order and AccountBalance == OrderTotal OR
+                                                             // someone tries to Complete Transaction with no products added.
         }
     }
 }

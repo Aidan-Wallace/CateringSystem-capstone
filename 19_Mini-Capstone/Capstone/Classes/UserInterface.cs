@@ -74,7 +74,7 @@ namespace Capstone.Classes
 
                 Console.Write("Current Account Balance: {0}\n ", CurrentOrder.AccountBalance.ToString("C2"));
                 string input = Console.ReadLine();
-                Console.WriteLine();
+                
                 switch (input)
                 {
                     case "1":
@@ -166,13 +166,17 @@ namespace Capstone.Classes
             {
                 { "B", new string[2]{"Beverage", "Don't forget ice."}},
                 { "A", new string[2]{"Appetizer", "You might need extra plates." }},
-                { "E", new string[2]{"Entree", "Did you remember Dessert?" } },
+                { "E", new string[2]{ "Entrée", "Did you remember Dessert?" } },
                 { "D", new string[2]{"Dessert", "Coffee goes with dessert."} }
             };
 
-            Console.WriteLine();
             foreach (KeyValuePair<CateringItem, int> kvp in CurrentOrder.ItemsToOrder.OrderBy(key => key.Key.Type))
             {
+                if (CurrentOrder.ItemsToOrder.Count == 0)
+                {
+                    break;
+                }
+
                 Console.WriteLine(String.Format("{0,-5} {1,-10} {2, -20} {3, -7} {4, -25}",
                     kvp.Value,
                     productType[kvp.Key.Type][0],
@@ -187,7 +191,4 @@ namespace Capstone.Classes
 
         }
     }
-}// The log file will need to be written to every time something happens in the UI aside from just changing menus.
- // Maybe we can have a method in FileAccess that does that? If there's a way to make it happen for all possible
- // actions that would probably be best. Could also be an opportunity for polymorphism if we have to do transformations
- // to make it work based on what the action is. 
+}
