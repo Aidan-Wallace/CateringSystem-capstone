@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Capstone.Classes
 {
@@ -12,14 +11,14 @@ namespace Capstone.Classes
         public Order()
         {
             ItemsToOrder = new Dictionary<CateringItem, int>();
-           
+
         }
 
-        public bool AddProductToOrder(CateringItem item, int quantity) // Unit Test needed
+        public bool AddProductToOrder(CateringItem item, int quantity)
         {
             decimal currentPrice = item.Price * quantity;
             if (currentPrice > AccountBalance) { return false; }
-          
+
             if (ItemsToOrder.ContainsKey(item))
             {
                 ItemsToOrder[item] += quantity;
@@ -29,13 +28,12 @@ namespace Capstone.Classes
                 ItemsToOrder.Add(item, quantity);
             }
             AccountBalance -= currentPrice;
-            OrderTotal =+ currentPrice;
+            OrderTotal = +currentPrice;
             log.Log($"{quantity} {item.Description} {item.ProductCode}", currentPrice, AccountBalance);
             return true;
-            //NUMBER_ORDERED PRODUCT_NAME PRODUCT_CODE
         }
 
-        public bool AddMoney(int amount) // Unit Test needed
+        public bool AddMoney(int amount)
         {
 
             decimal newBalance = AccountBalance + amount;
@@ -45,16 +43,16 @@ namespace Capstone.Classes
             AccountBalance += amount;
 
             log.Log($"ADD MONEY:", amount, AccountBalance);
-                      
+
             return true;
         }
 
-        public void CompleteTransaction() // Unit Test needed
+        public void CompleteTransaction()
         {
             AccountBalance = 0;
         }
-       public string ChangeDue() // Unit Test needed
-        { 
+        public string ChangeDue()
+        {
             int numberOfFifties = 0;
             int numberOfTwenties = 0;
             int numberOfTens = 0;
@@ -63,13 +61,13 @@ namespace Capstone.Classes
             int numberOfQuarters = 0;
             int numberOfDimes = 0;
             int numberOfNickels = 0;
-            
+
             log.Log($"GIVE CHANGE:", AccountBalance, 0);
 
             if (AccountBalance == 0) return "You received no change.";
 
-            while(AccountBalance >= 50) { AccountBalance -= 50; numberOfFifties++;}
-            while(AccountBalance >= 20) { AccountBalance -= 20; numberOfTwenties++; }
+            while (AccountBalance >= 50) { AccountBalance -= 50; numberOfFifties++; }
+            while (AccountBalance >= 20) { AccountBalance -= 20; numberOfTwenties++; }
             while (AccountBalance >= 10) { AccountBalance -= 10; numberOfTens++; }
             while (AccountBalance >= 5) { AccountBalance -= 5; numberOfFives++; }
             while (AccountBalance >= 1) { AccountBalance -= 1; numberOfOnes++; }
@@ -87,13 +85,10 @@ namespace Capstone.Classes
             changeMessage += numberOfDimes != 0 ? $"({numberOfDimes}) Dimes, " : "";
             changeMessage += numberOfNickels != 0 ? $"({numberOfNickels}) Nickels, " : "";
             changeMessage += "in change.";
-            
+
             int commaOccurrence = (changeMessage.IndexOf("in change.") - 2);
-            ItemsToOrder.Clear();
-            return changeMessage.Remove(commaOccurrence, 1); // need to add something to make changeMessage say
-                                                             // "You don't need any change." in the event someone
-                                                             // completes an order and AccountBalance == OrderTotal OR
-                                                             // someone tries to Complete Transaction with no products added.
+            ItemsToOrder.Clear(); //Clearing items from the order after change is returned.
+            return changeMessage.Remove(commaOccurrence, 1);
 
         }
     }

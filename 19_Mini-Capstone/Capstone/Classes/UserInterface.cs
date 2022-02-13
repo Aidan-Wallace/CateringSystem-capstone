@@ -50,7 +50,7 @@ namespace Capstone.Classes
         }
         public void DisplayCateringItems()
         {
-           // Console.WriteLine();
+
             Console.WriteLine(String.Format("{0,-13} {1,-20} {2, -10} {3,-7}", "Product Code", "Description", "Qty", "Price"));
 
             foreach (KeyValuePair<CateringItem, int> kvp in Inventory.OrderBy(key => key.Key.ProductCode))
@@ -74,37 +74,11 @@ namespace Capstone.Classes
 
                 Console.Write("Current Account Balance: {0}\n ", CurrentOrder.AccountBalance.ToString("C2"));
                 string input = Console.ReadLine();
-                
+
                 switch (input)
                 {
                     case "1":
-                        int inputBills = 0;
-                        while (true)
-
-                        {
-                            try
-                            {
-                                Console.Write("Please enter amount\n $");
-                                inputBills = int.Parse(Console.ReadLine());
-                                Console.WriteLine();
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Bill values must be entered as a number.\n");
-                                continue;
-                            }
-                            if (!acceptableBills.Contains(inputBills))
-                            {
-                                Console.WriteLine("Invalid bill denomination.");
-                                continue;
-                            }
-                            if (!CurrentOrder.AddMoney(inputBills))
-                            {
-                                Console.WriteLine("Account balance cannot exceed $1500.00.\n");
-                            }
-                            break;
-                        }
-
+                        AddMoney();
                         break;
                     case "2":
                         if (CurrentOrder.AccountBalance == 0) { Console.WriteLine("Please add funds first."); continue; }
@@ -123,6 +97,36 @@ namespace Capstone.Classes
                 }
             }
         }
+
+        public void AddMoney()
+        {
+            int inputBills = 0;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Please enter amount\n $");
+                    inputBills = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
+                }
+                catch
+                {
+                    Console.WriteLine("Bill values must be entered as a number.\n");
+                    continue;
+                }
+                if (!acceptableBills.Contains(inputBills))
+                {
+                    Console.WriteLine("Invalid bill denomination.");
+                    continue;
+                }
+                if (!CurrentOrder.AddMoney(inputBills))
+                {
+                    Console.WriteLine("Account balance cannot exceed $1500.00.\n");
+                }
+                break;
+            }
+        }
+
         public void SelectProduct()
         {
             bool pickingQuantity = true;

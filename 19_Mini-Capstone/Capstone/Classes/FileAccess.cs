@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Capstone.Classes
 {
@@ -15,9 +14,8 @@ namespace Capstone.Classes
 
         public List<CateringItem> OpenItems()
         {
-            // New list to hold new items
-            List<CateringItem> populateInventory = new List<CateringItem>();
 
+            List<CateringItem> populateInventory = new List<CateringItem>();
 
             string fileName = "cateringsystem.csv";
             string itemsPath = Path.Combine(filePath, fileName);
@@ -36,11 +34,12 @@ namespace Capstone.Classes
             }
             return populateInventory;
         }
-        // 1 is add money, 2 is pick product, 3 is complete transaction
+
         public void Log(string actionTaken, decimal amount, decimal balance)
-        {   string dateAndTime = DateTime.Now.ToString();
+        {
+            string dateAndTime = DateTime.Now.ToString();
             string fileName = "log.txt";
-            //string filePath = @"C:\Catering";
+
             string logPath = Path.Combine(filePath, fileName);
             string line;
             line = $"{dateAndTime} {actionTaken} {amount.ToString("C2")} {balance.ToString("C2")}";

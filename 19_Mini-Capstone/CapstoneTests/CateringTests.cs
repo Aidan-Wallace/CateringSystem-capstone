@@ -6,31 +6,24 @@ using System.Linq;
 namespace CapstoneTests
 {
     [TestClass]
-    public class CateringTest
+    public class CateringTests
     {
         [TestMethod]
         public void Check_that_catering_object_is_created()
         {
-            // Arrange 
             Catering catering = new Catering();
 
-            // Act
-
-            //Assert
             Assert.IsNotNull(catering);
         }
 
         [TestMethod]
         public void GetItemTest()
         {
-            // Arrange
             Catering testObject = new Catering();
             CateringItem cateringItem = new CateringItem("A", "A1", "Tropical Fruit Bowl", 3.50M);
 
-            // Act
             CateringItem result = testObject.GetItem("A1");
 
-            // Assert
             Assert.AreEqual(result.Type, cateringItem.Type);
             Assert.AreEqual(result.ProductCode, cateringItem.ProductCode);
             Assert.AreEqual(result.Description, cateringItem.Description);

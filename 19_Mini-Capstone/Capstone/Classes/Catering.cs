@@ -19,7 +19,7 @@ namespace Capstone.Classes
                 inventory.Add(item, 25);
             }
         }
-        public CateringItem GetItem(string productCode) // Unit Test needed
+        public CateringItem GetItem(string productCode) 
         {
             CateringItem foundItem = null;
             foreach (CateringItem item in items)
@@ -31,15 +31,15 @@ namespace Capstone.Classes
             }
             return foundItem;
         }
-        public Dictionary<CateringItem, int> GetInventory() // Unit Test needed
+        public Dictionary<CateringItem, int> GetInventory() 
         {
             return inventory;
         }
-        public Order GetOrder() // Unit Test needed
+        public Order GetOrder() 
         {
             return CurrentOrder;
         }
-        public void TakeItem(CateringItem product, int quantity) // Unit Test needed
+        public void TakeItem(CateringItem product, int quantity) 
         {
             inventory[product] -= quantity;
         }
